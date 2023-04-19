@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des categories</h1>
+	{% if categories is not empty %}
+		{{ dump(categories) }}
+		{# dump() est une fonction de débogage qui affiche le contenu d'une variable #}
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categories %}
+					<tr>
+						<td>{{ category.title }}</td>
+						<td>{{ category.description }}</td>
+						<td>
+							<a href="{{ path('app_category_show', {'id': category.id}) }}">Voir</a>
+							<a href="{{ path('app_category_delete', {'id': category.id}) }}" class="btn btn-danger">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Il n'y a aucune catégorie</p>
+	{% endif %}
+
+	<h2>Ajouter une catégorie</h2>
+	{{ form(form) }}
+		{# form() est une fonction qui génère le code HTML d'un formulaire. Cependant, on n'a pas du tout la main sur le style  #}
+	{% endblock %}

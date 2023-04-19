@@ -1,0 +1,4 @@
+product:
+    title: Products list
+    added: Product added
+    nb: There are %nb% products

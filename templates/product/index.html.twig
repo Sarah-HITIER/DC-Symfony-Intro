@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!
+{% endblock %}
+
+{% block body %}
+	<h1>{{ 'product.title'|trans }}</h1>
+	<p>{{ 'product.nb'|trans({'%nb%':products|length}) }}</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Category</th>
+				<th>Image</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for product in products %}
+				<tr>
+					<td>{{ product.name }}</td>
+					<td>{{ product.description }}</td>
+					<td>{{ product.quantity }}</td>
+					<td>{{ product.price }}</td>
+					<td>{{ product.category }}</td>
+					<td>
+						{% if product.image is not null %}
+							<img src="{{ asset('/uploads/'~ product.image) }}" style="max-width: 100px;"/>
+						{% endif %}
+					</td>
+					<td>
+						<a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-primary">Voir</a>
+						<a href="{{ path('app_product_delete', {'id': product.id}) }}" class="btn btn-danger">Supprimer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">Il n'y a aucun produit</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h2>Ajouter un produit</h2>
+	{{ form(add) }}
+		{# form() est une fonction qui génère le code HTML d'un formulaire. Cependant, on n'a pas du tout la main sur le style  #}
+	{% endblock %}
