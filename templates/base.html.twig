@@ -12,18 +12,27 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="{{asset('css/checkout.css')}}"/>
+
 		{% endblock %}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
+			<script src="https://js.stripe.com/v3/"></script>
+			<script src="{{asset('js/checkout.js')}}" defer></script>
+
 		{% endblock %}
 	</head>
 	<body>
 		<header>
 			<nav>
 				<ul>
-					<li><a href="{{path('app_category')}}">Liste des catégories</a></li>
-					<li><a href="{{path('app_product')}}">Liste des produits</a></li>
+					<li>
+						<ahref="{{path('app_category')}}">Liste des catégories</ahref=>
+					</li>
+					<li>
+						<ahref="{{path('app_product')}}">Liste des produits</ahref=>
+					</li>
 				</ul>
 			</nav>
 		</header>
